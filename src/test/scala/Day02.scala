@@ -34,19 +34,19 @@ class Day02 extends AdventOfCodeSuite {
       case "X" => Lose
       case "Y" => Draw
 
-  extension (o: Outcome)
-    def cheat(game: Game): Game =
+  extension (outcome: Outcome)
+    def cheat(opponent: Game): Game =
       import Outcome.*
       import Game.*
-      o match
-        case Draw => game
+      outcome match
+        case Draw => opponent
         case Win =>
-          game match
+          opponent match
             case Rock     => Paper
             case Paper    => Scissors
             case Scissors => Rock
         case Lose =>
-          game match
+          opponent match
             case Rock     => Scissors
             case Paper    => Rock
             case Scissors => Paper
@@ -57,7 +57,7 @@ class Day02 extends AdventOfCodeSuite {
     case Scissors extends Game(value = 3)
 
   object Game:
-    // we map ABC and XYZ for part1 - but this is not relevant for part2
+    // we map both ABC and XYZ for part1 - but XYZ is not relevant for part2
     def apply(s: String) = s match
       case "A" | "X" => Rock
       case "B" | "Y" => Paper
