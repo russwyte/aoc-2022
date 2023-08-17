@@ -65,11 +65,14 @@ class Day02 extends AdventOfCodeSuite {
 
   extension (g: Game)
     def play(opponent: Game): Outcome =
-      if g == opponent then Outcome.Draw
-      else if g == Game.Rock && opponent == Game.Scissors then Outcome.Win
-      else if g == Game.Paper && opponent == Game.Rock then Outcome.Win
-      else if g == Game.Scissors && opponent == Game.Paper then Outcome.Win
-      else Outcome.Lose
+      import Game.*
+      import Outcome.*
+      // could have used a match here, but I wanted to show the if-else
+      if g == opponent then Draw
+      else if g == Rock && opponent == Scissors then Win
+      else if g == Paper && opponent == Rock then Win
+      else if g == Scissors && opponent == Paper then Win
+      else Lose
 
   def makeTournamentPart1(input: String): Array[Round] =
     input.split("\n").collect { case s"$opponent $player" =>
