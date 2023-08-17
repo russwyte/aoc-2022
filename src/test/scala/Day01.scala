@@ -1,7 +1,14 @@
 import scala.io.Source
-class MySuite extends munit.FunSuite {
-  val input = Source.fromResource("day-01.txt").getLines().mkString("\n")
 
+trait AdventOfCodeSuite extends munit.FunSuite { self =>
+  val input: String =
+    Source
+      .fromResource(s"${self.getClass.getSimpleName}.txt")
+      .getLines()
+      .mkString("\n")
+}
+
+class Day01 extends AdventOfCodeSuite {
   val testInput = """
     |1000
     |2000
